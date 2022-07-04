@@ -19,18 +19,20 @@ You will be graded on the level of detail in each ticket, the clarity of the exe
 Ticket 1:
 
 - Title: Implement correlation table "ExternalAgentReference"
-- Breakdown:
+- Estimated Effort: 1hr
+- Acceptance Criteria
   - The table needs 3 columns: AgentID, FacilityID, ExternalReference
   - Uses a composite PK of (AgentID, FacilityID)
-  - ExternalReference column is of type VarChar(64) and use either a SQL trigger or client-side code (meaning the node.js process that connects to the DB not the frontend) to validate that it is an alphanumeric string.
+  - ExternalReference column is of type VarChar(64)
 
 Ticket 2:
 
 - Title: Expose a REST API for Facility Admins to create and delete their own references to agents
-- Breakdown:
+- Estimated Effort: 2hrs
+- Acceptance Criteria
   - Expose **/agent/:id/external-reference POST**
     - Check agent with ID ":id" exists, return a 404 otherwise
-    - Expect and validate body of type `{ customId: string }`
+    - Expect and validate body of type `{ customId: string }` (only validate that "customId" is a non-empty string)
     - Read the value of FacilityID from the incoming JWT payload. Expect the shape of the JWT payload to be a superset of `{ app_metadata: { facilityId: string } }`
     - To recap: The 3 values you need to insert a row are -> AgentID (read from url), ExternalReference (read from body), FacilityID (read from Auth0's JWT payload app_metadata)
   - Expose **/agent/:id/external-reference DELETE**
@@ -45,6 +47,7 @@ Ticket 2:
 Ticket 3:
 
 - Title: Modify materialized view pipeline to support "useCustomIds" option
-- Breakdown:
+- Estimated Effort: 4hrs
+- Acceptance Criteria
   - Extend the options of `generateReport` to include a new key of boolean value "useCustomIds". Have it default to `false`
   - If "useCustomIds" is `true` include an initial stage to LEFT JOIN the agentId's with their corresponding row on the new table "ExternalAgentReference". Have the output include the internal AgentID **alongside** ExternalReference.
