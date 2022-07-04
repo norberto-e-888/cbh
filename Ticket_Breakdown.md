@@ -50,4 +50,4 @@ Ticket 3:
 - Estimated Effort: 1.5hr
 - Acceptance Criteria
   - Extend the options of `getShiftsByFacility` to include a new key of boolean value "withCustomAgentIds". Have it default to `false`
-  - If "withCustomAgentIds" is `true` LEFT JOIN the agentId's with their corresponding row on the new table "ExternalAgentReference". Have the output include the internal AgentID **alongside** ExternalReference, meaning **do not override** `AgentID` with `ExternalReference`
+  - If "withCustomAgentIds" is `true` read all rows on the new table "ExternalAgentReference" WHERE FacilityID = the facility ID passed to `getShiftsByFacility`, and create a hash map where keys are `AgentID` and values are their corresponding `ExternalReference`. Within each agent aggregation, set under key "externalAgentReference" the value held by the in-memory hash map using the agent's internal ID as key.
