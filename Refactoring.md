@@ -10,7 +10,7 @@ You will be graded on the exhaustiveness and quality of your unit tests, the dep
 
 ## Your Explanation Here
 
-Given that I have no context on what purpose "deterministicPartitionKey" serves, I had to perfom my refactoring based on literal behavior.
+Given that I have no external context on what purpose "deterministicPartitionKey" serves, I had to perfom my refactoring based on literal behavior.
 
 We introduce 2 short-circuit return statements to minimize logical branching.
 
