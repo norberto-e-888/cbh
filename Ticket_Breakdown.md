@@ -46,8 +46,8 @@ Ticket 2:
 
 Ticket 3:
 
-- Title: Modify materialized view pipeline to support "useCustomIds" option
-- Estimated Effort: 4hrs
+- Title: Modify `getShiftsByFacility` to support "withCustomAgentIds" option
+- Estimated Effort: 1.5hr
 - Acceptance Criteria
-  - Extend the options of `generateReport` to include a new key of boolean value "useCustomIds". Have it default to `false`
-  - If "useCustomIds" is `true` include an initial stage to LEFT JOIN the agentId's with their corresponding row on the new table "ExternalAgentReference". Have the output include the internal AgentID **alongside** ExternalReference.
+  - Extend the options of `getShiftsByFacility` to include a new key of boolean value "withCustomAgentIds". Have it default to `false`
+  - If "withCustomAgentIds" is `true` LEFT JOIN the agentId's with their corresponding row on the new table "ExternalAgentReference". Have the output include the internal AgentID **alongside** ExternalReference, meaning **do not override** `AgentID` with `ExternalReference`
